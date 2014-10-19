@@ -3,7 +3,7 @@ local libvec = require("libvec")
 local filesystem = require("filesystem")
 local currentLocation
 local LOCATIONSERVICEPROGRAMDATADIR ="/var/locationService/"
-local CURRENTLOCATIONFILENAME = LOCATIONSERVICEPROGRAMDATADIR .."currentLocation"
+local CURRENTLOCATIONFILENAME = "currentLocation"
 local DEFAULTLOCATION = {0,0,0,1,0}
 
 function ensureProgramDataDirExists()
@@ -14,7 +14,7 @@ end
 
 function serializeToFile(object, filename)
 	ensureProgramDataDirExists()
-	local handle = fs.open(STATEDIR .. filename,"wb")
+	local handle = fs.open(LOCATIONSERVICEPROGRAMDATADIR .. filename,"wb")
 	local objectString = serialization.serialize(object)
 	handle:write(objectString)
 	handle:close()
@@ -32,7 +32,7 @@ end
 
 function deserializeFromFile(filename)
 	ensureProgramDataDirExists()
-	local objectString = readFile(STATEDIR .. filename)
+	local objectString = readFile(LOCATIONSERVICEPROGRAMDATADIR .. filename)
 	if not objectString then
 		return
 	end
