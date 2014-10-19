@@ -73,7 +73,7 @@ end
 function locationService.setLocationFromArray(array)
 	local location = locationService.getLocationFromArray(array)
 	if location then
-		setLocation(location)
+		locationService.setLocation(location)
 		return true
 	else
 		return false
