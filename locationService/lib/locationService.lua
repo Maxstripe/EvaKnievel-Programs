@@ -7,7 +7,7 @@ local CURRENTLOCATIONFILENAME = LOCATIONSERVICEPROGRAMDATADIR .."currentLocation
 local DEFAULTLOCATION = {0,0,0,1,0}
 
 function ensureProgramDataDir()
-	if not filesystem.exists(LOCATIONSERVICEPROGRAMDATADIR then
+	if not filesystem.exists(LOCATIONSERVICEPROGRAMDATADIR) then
 		filesystem.makeDirectory(LOCATIONSERVICEPROGRAMDATADIR)
 	end
 end
