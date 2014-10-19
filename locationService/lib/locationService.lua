@@ -6,14 +6,14 @@ local LOCATIONSERVICEPROGRAMDATADIR ="/var/locationService/"
 local CURRENTLOCATIONFILENAME = LOCATIONSERVICEPROGRAMDATADIR .."currentLocation"
 local DEFAULTLOCATION = {0,0,0,1,0}
 
-function ensureProgramDataDir()
+function ensureProgramDataDirExists()
 	if not filesystem.exists(LOCATIONSERVICEPROGRAMDATADIR) then
 		filesystem.makeDirectory(LOCATIONSERVICEPROGRAMDATADIR)
 	end
 end
 
 function serializeToFile(object, filename)
-	ensureStateDirExists()
+	ensureProgramDataDirExists()
 	local handle = fs.open(STATEDIR .. filename,"wb")
 	local objectString = serialization.serialize(object)
 	handle:write(objectString)
@@ -31,7 +31,7 @@ function readFile(file)
 end
 
 function deserializeFromFile(filename)
-	ensureStateDirExists()
+	ensureProgramDataDirExists()
 	local objectString = readFile(STATEDIR .. filename)
 	if not objectString then
 		return
