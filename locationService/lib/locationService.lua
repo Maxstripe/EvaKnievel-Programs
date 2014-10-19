@@ -1,8 +1,16 @@
 local locationService = {}
 local libvec = require("libvec")
+local filesystem = require("filesystem")
 local currentLocation
-local CURRENTLOCATIONFILENAME = "/var/location/currentLocation"
+local LOCATIONSERVICEPROGRAMDATADIR ="/var/locationService/"
+local CURRENTLOCATIONFILENAME = LOCATIONSERVICEPROGRAMDATADIR .."currentLocation"
 local DEFAULTLOCATION = {0,0,0,1,0}
+
+function ensureProgramDataDir()
+	if not filesystem.exists(LOCATIONSERVICEPROGRAMDATADIR then
+		filesystem.makeDirectory(LOCATIONSERVICEPROGRAMDATADIR)
+	end
+end
 
 function serializeToFile(object, filename)
 	ensureStateDirExists()
@@ -59,6 +67,7 @@ function locationService.getLocation()
 end
 function locationService.setLocation(location)
 	currentLocation = location
+	ensureProgramDataDir()
 	return serializeToFile(location,CURRENTLOCATIONFILENAME)
 end
 
