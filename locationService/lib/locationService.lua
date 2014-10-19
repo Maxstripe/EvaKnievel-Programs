@@ -1,6 +1,7 @@
 local locationService = {}
 local libvec = require("libvec")
 local filesystem = require("filesystem")
+local serialization = require("serialization")
 local currentLocation
 local LOCATIONSERVICEPROGRAMDATADIR ="/var/locationService/"
 local CURRENTLOCATIONFILENAME = "currentLocation"
