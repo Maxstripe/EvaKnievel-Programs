@@ -14,7 +14,7 @@ end
 
 function serializeToFile(object, filename)
 	ensureProgramDataDirExists()
-	local handle = fs.open(LOCATIONSERVICEPROGRAMDATADIR .. filename,"wb")
+	local handle = filesystem.open(LOCATIONSERVICEPROGRAMDATADIR .. filename,"wb")
 	local objectString = serialization.serialize(object)
 	handle:write(objectString)
 	handle:close()
