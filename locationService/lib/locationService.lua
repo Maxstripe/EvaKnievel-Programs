@@ -1,5 +1,4 @@
 local locationService = {}
-local libvec = require("libvec")
 local filesystem = require("filesystem")
 local serialization = require("serialization")
 local currentLocation
@@ -40,10 +39,12 @@ function deserializeFromFile(filename)
 end
 function locationService.getLocationFromArray(array)
 	local location = { }
-	location.pos = libvec.new(tonumber(array[1]),tonumber(array[2]),tonumber(array[3]))
+	location.x = tonumber(array[1])
+	location.y = tonumber(array[2])
+	location.z = tonumber(array[3])
 	location.xDir = tonumber(array[4])
 	location.zDir = tonumber(array[5])
-	if location.pos.x and location.pos.y and location.pos.z and location.xDir and location.zDir then
+	if location.x and location.y and location.z and location.xDir and location.zDir then
 		if location.xDir > 1 or location.xDir < -1 or location.zDir > 1 or location.zDir < -1 then
 			error("Direction should be between 1 and -1")
 			return nil
