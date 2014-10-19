@@ -31,7 +31,6 @@ function readFile(file)
 end
 
 function deserializeFromFile(filename)
-	ensureProgramDataDirExists()
 	local objectString = readFile(LOCATIONSERVICEPROGRAMDATADIR .. filename)
 	if not objectString then
 		return
@@ -67,7 +66,6 @@ function locationService.getLocation()
 end
 function locationService.setLocation(location)
 	currentLocation = location
-	ensureProgramDataDir()
 	return serializeToFile(location,CURRENTLOCATIONFILENAME)
 end
 
