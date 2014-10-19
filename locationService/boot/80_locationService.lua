@@ -1,6 +1,6 @@
 local component = require("component")
 local sides = require("sides")
-local location = require("locationService")
+local locationService = require("locationService")
 
 robot_move = component.robot.move
 robot_turn = component.robot.turn
