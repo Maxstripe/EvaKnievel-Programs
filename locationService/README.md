@@ -7,6 +7,7 @@ This overrides/wraps the methods component.robot.move and component.robot.turn m
 
 Every time either of these functions are called the file /var/locationService/currentLocation is updated with the current location, you can get the current location from a script as follows
 
+```
 locationService = require("locationService")
 location = locationService.getLocation()
 
@@ -23,3 +24,4 @@ elseif location.zDir == 1 then
 else
 	print("Direction: North")
 end
+```
